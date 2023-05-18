@@ -2,6 +2,7 @@
 
 namespace Akrbdk\PhpMvcCore;
 
+use Akrbdk\PhpMvcCore\Db\Database;
 use Exception;
 
 class Application
@@ -10,13 +11,15 @@ class Application
     public static Application $app;
     public string $layout = 'main';
     public string $userClass;
+
+    public View $view;
     public Router $router;
     public Request $request;
     public Response $response;
     public Session $session;
     public ?Controller $controller = null;
     public Database $db;
-    public ?DbModel $user;
+    public ?UserModel $user;
 
     public function __construct($rootPath, array $config)
     {
@@ -28,6 +31,7 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->session = new Session();
+        $this->view = new View();
         $this->router = new Router($this->request, $this->response);
         $this->db = new Database($config['db']);
 
@@ -68,13 +72,13 @@ class Application
             echo $this->router->resolve();
         } catch (Exception $e) {
             Application::$app->response->setStatusCode($e->getCode());
-            echo $this->router->renderView('_error', [
+            echo $this->view->renderView('_error', [
                 'exception' => $e
             ]);
         }
     }
 
-    public function login(DbModel $user): bool
+    public function login(UserModel $user): bool
     {
         $this->user = $user;
         $primaryKey = $user->primaryKey();
