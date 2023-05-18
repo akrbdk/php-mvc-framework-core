@@ -7,11 +7,12 @@ use Exception;
 
 class Application
 {
+    const EVENT_BEFORE_REQUEST = 'beforeRequest';
+    const EVENT_AFTER_REQUEST = 'afterRequest';
     public static string $ROOT_DIR;
     public static Application $app;
     public string $layout = 'main';
     public string $userClass;
-
     public View $view;
     public Router $router;
     public Request $request;
@@ -20,6 +21,7 @@ class Application
     public ?Controller $controller = null;
     public Database $db;
     public ?UserModel $user;
+    protected array $eventListeners = [];
 
     public function __construct($rootPath, array $config)
     {
@@ -68,6 +70,8 @@ class Application
 
     public function run(): void
     {
+        $this->triggerEvent(self::EVENT_BEFORE_REQUEST);
+
         try {
             echo $this->router->resolve();
         } catch (Exception $e) {
@@ -75,6 +79,16 @@ class Application
             echo $this->view->renderView('_error', [
                 'exception' => $e
             ]);
+        }
+
+        $this->triggerEvent(self::EVENT_AFTER_REQUEST);
+    }
+
+    public function triggerEvent($eventName): void
+    {
+        $callbacks = $this->eventListeners[$eventName] ?? [];
+        foreach ($callbacks as $callback) {
+            call_user_func($callback);
         }
     }
 
@@ -91,5 +105,10 @@ class Application
     {
         $this->user = null;
         $this->session->unset('user');
+    }
+
+    public function on($eventName, $callback): void
+    {
+        $this->eventListeners[$eventName][] = $callback;
     }
 }
