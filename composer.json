@@ -1,0 +1,15 @@
+{
+    "name": "akrbdk/php-mvc-framework-core",
+    "autoload": {
+        "psr-4": {
+            "Akrbdk\\PhpMvcFrameworkCore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alexander.karabudka",
+            "email": "sanyakarabudka@gmail.com"
+        }
+    ],
+    "require": {}
+}
