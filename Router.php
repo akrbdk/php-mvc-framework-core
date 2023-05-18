@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core;
+namespace Akrbdk\PhpMvcCore;
 
-use App\Core\Exception\NotFoundException;
+use Akrbdk\PhpMvcCore\Exception\NotFoundException;
 
 /**
  *

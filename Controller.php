@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core;
+namespace Akrbdk\PhpMvcCore;
 
-use App\Core\Middlewares\BaseMiddleware;
+use Akrbdk\PhpMvcCore\Middlewares\BaseMiddleware;
 
 class Controller
 {

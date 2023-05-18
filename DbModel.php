@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace Akrbdk\PhpMvcCore;
 
 abstract class DbModel extends Model
 {

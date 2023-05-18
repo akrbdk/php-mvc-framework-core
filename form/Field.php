@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Form;
+namespace Akrbdk\PhpMvcCore\Form;
 
-use App\Core\Model;
+use Akrbdk\PhpMvcCore\Model;
 
 class Field
 {

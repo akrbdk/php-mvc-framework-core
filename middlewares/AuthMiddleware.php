@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Middlewares;
+namespace Akrbdk\PhpMvcCore\Middlewares;
 
-use App\Core\Application;
-use App\Core\Exception\ForbiddenException;
+use Akrbdk\PhpMvcCore\Application;
+use Akrbdk\PhpMvcCore\Exception\ForbiddenException;
 
 class AuthMiddleware extends BaseMiddleware
 {

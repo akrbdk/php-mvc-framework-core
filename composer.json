@@ -11,5 +11,10 @@
             "email": "sanyakarabudka@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Akrbdk\\PhpMvcCore\\": "."
+        }
+    }
 }
