@@ -20,7 +20,7 @@ class Application
     public Session $session;
     public ?Controller $controller = null;
     public Database $db;
-    public ?DbModel $user;
+    public ?UserModel $user;
     protected array $eventListeners = [];
 
     public function __construct($rootPath, array $config)
@@ -92,7 +92,7 @@ class Application
         }
     }
 
-    public function login(DbModel $user): bool
+    public function login(UserModel $user): bool
     {
         $this->user = $user;
         $primaryKey = $user->primaryKey();
